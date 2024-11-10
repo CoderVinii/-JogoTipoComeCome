@@ -3,9 +3,9 @@
 #include "fogefoge.h"
 #include "mapa.h"
 
-
 MAPA m;
 POSICAO heroi;
+
 
 int acabou() {
 	return 0;
@@ -33,7 +33,7 @@ void move(char direcao) {
 			heroi.y++;
 			break;
 	}
-
+	
 }
 
 int main() {
@@ -42,14 +42,14 @@ int main() {
 	encontramapa(&m, &heroi, '@');
 
 	do {
-
 		imprimemapa(&m);
 
 		char comando;
 		scanf(" %c", &comando);
+
 		move(comando);
 
-	} while(!acabou());
+	} while (!acabou());
 
 	liberamapa(&m);
 }
