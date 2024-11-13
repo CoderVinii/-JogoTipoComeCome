@@ -31,3 +31,4 @@ struct posicao {
 typedef struct posicao POSICAO;
 
 void encontramapa(MAPA* m, POSICAO* p, char c);
+void copiamapa(MAPA* destino, MAPA* origem);

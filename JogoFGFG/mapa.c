@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "mapa.h"
 
 void copiamapa(MAPA* destino, MAPA* origem) {
