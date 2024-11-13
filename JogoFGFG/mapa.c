@@ -1,38 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "mapa.h"
-
-void copiamapa(MAPA* destino, MAPA* origem) {
-	destino->linhas == origem->linhas;
-	destino->colunas == origem->colunas;
-
-	alocamapa(destino);
-	for(int i = 0; i < origem->linhas; i++) {
-		strcpy(destino->matriz[i], origem->matriz[i]);
-		}
-	}
-
-void andanomapa(MAPA* m, int xorigem, int yorigem, 
-	int xdestino, int ydestino) {
-
-	char personagem = m->matriz[xorigem][yorigem];
-	m->matriz[xdestino][ydestino] = personagem;
-	m->matriz[xorigem][yorigem] = VAZIO;
-}
-
-int ehvalida(MAPA* m, int x, int y) {
-	if(x >= m->linhas)
-	    return 0;
-	if(y >= m->colunas)
-	    return 0;
-
-	return 1;
-}
-
-int ehvazia(MAPA* m, int x, int y) {
-	return m->matriz[x][y] == VAZIO;
-}
+#include <string.h>
 
 void lemapa(MAPA* m) {
 	FILE* f;
@@ -60,6 +29,16 @@ void alocamapa(MAPA* m) {
 	}
 }
 
+void copiamapa(MAPA* destino, MAPA* origem) {
+	destino->linhas = origem->linhas;
+	destino->colunas = origem->colunas;
+	alocamapa(destino);
+	for(int i = 0; i < origem->linhas; i++) {
+		strcpy(destino->matriz[i], origem->matriz[i]);
+	}
+}
+
+
 void liberamapa(MAPA* m) {
 	for(int i = 0; i < m->linhas; i++) {
 		free(m->matriz[i]);
@@ -85,4 +64,28 @@ void encontramapa(MAPA* m, POSICAO* p, char c) {
 			}
 		}
 	}
+
+}
+
+
+int ehvalida(MAPA* m, int x, int y) {
+	if(x >= m->linhas) 
+		return 0;
+	if(y >= m->colunas) 
+		return 0;
+
+	return 1;	
+}
+
+int ehvazia(MAPA* m, int x, int y) {
+	return m->matriz[x][y] == VAZIO;
+}
+
+void andanomapa(MAPA* m, int xorigem, int yorigem, 
+	int xdestino, int ydestino) {
+
+	char personagem = m->matriz[xorigem][yorigem];
+	m->matriz[xdestino][ydestino] = personagem;
+	m->matriz[xorigem][yorigem] = VAZIO;
+
 }
